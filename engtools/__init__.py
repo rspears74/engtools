@@ -175,11 +175,11 @@ class Bar:
         Class C splice - 1.7 * ld
         """
         if class_ == "a":
-            return self.dev(fc=fc)
+            return self.dev_old(fc=fc)
         elif class_ == "b":
-            return self.dev(fc=fc) * 1.3
+            return self.dev_old(fc=fc) * 1.3
         elif class_ == "c":
-            return self.dev(fc=fc) * 1.7
+            return self.dev_old(fc=fc) * 1.7
         else:
             return "Invalid class."
 
