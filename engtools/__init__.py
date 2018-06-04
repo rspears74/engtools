@@ -64,10 +64,6 @@ class Bar:
         self.area = bars['area'][self.size]
         self.weight = bars['weight'][self.size]
 
-        self.dia = bars['dia'][self.size]
-        self.area = bars['area'][self.size]
-        self.weight = bars['weight'][self.size]
-
         # bend radii
         if size <= 8:
             self.bend_rad = self.dia * 6 / 2
@@ -548,7 +544,7 @@ class Dim:
     def __add__(self, other):
         return Dim(self.val + other)
     
-    def __mult__(self, other):
+    def __mul__(self, other):
         return Dim(self.val * other)
     
     def __sub__(self, other):
