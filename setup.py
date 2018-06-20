@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='engtools',
-      version='0.1',
+      version='0.2',
       description='Structural engineering related functions and tools.',
       url='https://github.com/rspears74/engtools',
       author='Randall Spears',
