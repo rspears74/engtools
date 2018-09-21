@@ -64,10 +64,6 @@ class Bar:
         self.area = bars['area'][self.size]
         self.weight = bars['weight'][self.size]
 
-        self.dia = bars['dia'][self.size]
-        self.area = bars['area'][self.size]
-        self.weight = bars['weight'][self.size]
-
         # bend radii
         if size <= 8:
             self.bend_rad = self.dia * 6 / 2
@@ -175,11 +171,11 @@ class Bar:
         Class C splice - 1.7 * ld
         """
         if class_ == "a":
-            return self.dev(fc=fc)
+            return self.dev_old(fc=fc)
         elif class_ == "b":
-            return self.dev(fc=fc) * 1.3
+            return self.dev_old(fc=fc) * 1.3
         elif class_ == "c":
-            return self.dev(fc=fc) * 1.7
+            return self.dev_old(fc=fc) * 1.7
         else:
             return "Invalid class."
 
@@ -529,9 +525,33 @@ def feetdisp(num, precision=8, roundup=False):
         feet += 1
         whole_inches = 0
     if inches_frac != 0:
-        print("{0}'-{1} {2}/{3}\"".format(feet, whole_inches, inches_frac, precision))
+        return "{0}'-{1} {2}/{3}\"".format(feet, whole_inches, inches_frac, precision)
     else:
-        print("{0}'-{1}\"".format(feet, whole_inches))
+        return "{0}'-{1}\"".format(feet, whole_inches)
+
+
+class Dim:
+    def __init__(self, val, precision=8):
+        self.val = val
+        self.precision = precision
+    
+    def __str__(self):
+        return feetdisp(self.val, precision=self.precision)
+    
+    def __repr__(self):
+        return feetdisp(self.val, precision=self.precision)
+    
+    def __add__(self, other):
+        return Dim(self.val + other)
+    
+    def __mul__(self, other):
+        return Dim(self.val * other)
+    
+    def __sub__(self, other):
+        return Dim(self.val - other)
+    
+    def __truediv__(self, other):
+        return Dim(self.val / other)
 
 
 def sigfigs(num, n):
